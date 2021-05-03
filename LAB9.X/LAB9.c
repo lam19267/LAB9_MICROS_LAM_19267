@@ -38,7 +38,7 @@
 #include <stdint.h>
 
 
-void config(void); // config de puertos
+void config(void); 
 
 
 void __interrupt() isr(void){ 
@@ -54,9 +54,8 @@ void __interrupt() isr(void){
     }
 }
 
-void main(void) {   //se pone el main
-    config();       //se llama a la configuracion del TMR0 e interrupciones
-    //ADCON0bits.GO = 1;
+void main(void) {   
+    config();       
     while(1){
         
         if (ADCON0bits.GO == 0){
@@ -83,7 +82,7 @@ void config(void){
    
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 1;   //8 MHz
+    OSCCONbits.IRCF0 = 1;   
     OSCCONbits.SCS = 1;
     
     INTCONbits.GIE = 1;
@@ -91,16 +90,16 @@ void config(void){
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
     
-    ADCON1bits.ADFM = 0;  //justificado a izquierda
-    ADCON1bits.VCFG0 = 0; //Vref en VSS Y VDD
-    ADCON1bits.VCFG1 = 0; //
-    ADCON0bits.ADCS = 0b10; //FOSC/32
+    ADCON1bits.ADFM = 0;  
+    ADCON1bits.VCFG0 = 0; 
+    ADCON1bits.VCFG1 = 0; 
+    ADCON0bits.ADCS = 0b10;
     ADCON0bits.CHS = 0; 
     ADCON0bits.ADON = 1;    
     __delay_us(50);
    
     
-    TRISCbits.TRISC2 = 1;  //CCP
+    TRISCbits.TRISC2 = 1;  
     TRISCbits.TRISC1 = 1;
     PR2 = 255;
     
